@@ -1,8 +1,12 @@
+//mushroom position
 int myX;
 int myY;
-float dropY;
 int myXchange;
 int mouthWidth;
+
+//flower drop speed
+float dropY;
+
 int flowerRed;
 
 void setup()
@@ -18,8 +22,10 @@ void setup()
 void draw()
 {
   background(90);
+  
   //dropping flowers
   dropY=dropY+1;
+  
   for (int x=50;x<width;x=x+100)
   { 
     for (int y=-100;y<height;y=y+100)
@@ -27,7 +33,11 @@ void draw()
       pushMatrix();
       translate(x, y+dropY);
       rotate(radians(dropY));
+      //I used dropY as the rotating speed just because of convenience
+      
       fill(flowerRed+dropY/2, 20, 70);
+      //again I used dropY variable to make the color change
+      
       ellipse(10, 0, 20, 20);
       ellipse(-10, 0, 20, 20);
       ellipse(0, 10, 20, 20);
@@ -37,12 +47,14 @@ void draw()
     }
   }
 
+  //mushroom
   //top//
   noStroke();
   fill(140, 10, 10);
   arc(myX+75, myY, 150, 160, PI, TWO_PI);
   fill(255, 180, 165);
   ellipse(myX+75, myY, 150, 35);
+  
   //spot//
   fill(255);
   ellipse(myX+75, myY-33, 25, 20);
@@ -50,13 +62,16 @@ void draw()
   ellipse(myX+125, myY-30, 25, 20);
   ellipse(myX+50, myY-53, 25, 20);
   ellipse(myX+100, myY-53, 25, 20);
+  
   //bottom//
   fill(255, 180, 165);
   rectMode(CENTER);
   rect(myX+75, myY+25, 75, 75, 20);
+  
   //eyes//
   drawLeftEye();
   drawRightEye();
+  
   //mouth//
   if (dropY>=height+100)
   {
@@ -65,6 +80,7 @@ void draw()
   fill(255);
   rect(myX+75, myY+45, mouthWidth, 8, 3);
   myX=myX+myXchange;//moving on x axis
+  
   if (myX+150>=width) {
     myXchange=-myXchange;
   }
@@ -73,6 +89,7 @@ void draw()
   }
 }
 
+//custom function
 void drawLeftEye()
 {
   fill(255);//left eye
